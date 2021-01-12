@@ -1,0 +1,36 @@
+<div class="container mt-3">
+  
+  <form #searchBookForm="ngForm" class="form-inline" (ngSubmit)="search()">
+    <div class="col-6">
+   <input class="form-control mr-sm-2" 
+   type="search" name="bookname"
+   [(ngModel)]="model.bookName"
+     placeholder="Search" >
+   <button class="btn btn-outline-success" type="submit">Search</button>
+   <button class="btn btn-outline-primary" (click)="loadListing()" type="button">Clear</button>
+  </div>
+  </form>
+
+
+<div class="row col-12 mt-5">
+   
+    <div *ngFor="let item of booksss" class="col-4">
+        <app-book-cards [book]="item"></app-book-cards>
+    </div>
+   
+  </div>
+</div>
+<div class="d-flex justify-content-center" *ngIf="pagination">
+  <pagination 
+  [boundaryLinks]="true" 
+  [totalItems]="pagination.totalItems"
+  [itemsPerPage]="pagination.itemsPerPage"
+  [(ngModel)]="pagination.currentPage"
+  (pageChanged)="pageChanged($event)"
+  previousText="&lsaquo;" 
+  nextText="&rsaquo;" 
+  firstText="&laquo;" 
+  lastText="&raquo;">
+ 
+</pagination>
+</div>
